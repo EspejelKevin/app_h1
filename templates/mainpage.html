@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adidas</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/static/images/adidas_ico.png" type="image/x-icon">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="/static/css/adidas.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Log Out</a>
+        </nav>
+        <section class="textos-header">
+            <h1> <span>Adidas</span> Running By Runtastic</h1>
+        </section>
+        <div class="wave" style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: #fff;"></path></svg></div> 
+
+    </header>
+    
+    <div class="content">
+        <h1 class="title" >Registration <span>Form</span></h1>
+        <div class="form-wrapper">
+            <div class="form-form">
+                <h3>Exercises</h3>
+                <form action="/registration_form" method="POST">
+                    <p>
+                        <label for="exercise-name">Exercise name</label>
+                        <input type="text" id="exercise-name" name="exercise-name" placeholder="Enter the name of the exercise">
+                    </p>
+                    <p>
+                        <label for="exercise-days">Exercise days per week</label>
+                        <input type="number" id="exercise-days" name="exercise-days" min="1" max="50">
+                    </p>
+                    <p>
+                        <label for="exercise-week">Exercise week</label>
+                        <input type="number" id="exercise-week" name="exercise-week" min="1" max="4">
+                    </p>
+                    <p>
+                        <label for="exercise-series">Exercise series (Optional)</label>
+                        <input type="number" id="exercise-series" name="exercise-series" min="1" max="100">
+                    </p>
+                    <p>
+                        <label for="exercise-reps">Exercise reps (Optional)</label>
+                        <input type="number" id="exercise-reps" name="exercise-reps" min="1" max="100">
+                    </p>
+                    <p>
+                        <label for="exercise-duration">Exercise time in minutes</label>
+                        <input type="number" id="exercise-duration" name="exercise-duration" min="1" max="300">
+                    </p>
+                    <p class="block">
+                        <button type="submit">
+                            Save Exercise
+                        </button>
+                    </p>
+                </form>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <p class="message">{{message}}</p>
+                {% endfor %}
+                {% endif %}
+                {% endwith%}
+            </div>
+            <div class="form-img">
+                <img src="/static/images/form.jpg">
+            </div>
+        </div>
+
+    </div>
+    <div class="table-container">
+        <h1 class="title" >Exercise <span>List</span></h1>
+        <table>
+            <thead>
+                <tr class="table_head">
+                    <td>Exercise name</td>
+                    <td>Exercise days per week</td>
+                    <td>Exercise week</td>
+                    <td>Exercise series (Optional)</td>
+                    <td>Exercise reps (Optional)</td>
+                    <td>Exercise time in minutes</td>
+                    <td>Operations</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for exercise in exercises %}
+                    <tr class="table_head">
+                        <td>{{exercise.0.capitalize()}}</td>
+                        <td>{{exercise.1}}</td>
+                        <td>{{exercise.2}}</td>
+                        <td>{{exercise.3}}</td>
+                        <td>{{exercise.4}}</td>
+                        <td>{{exercise.5}}</td>
+                        <td>
+                            <a class="boton1" href="/edit_record/{{exercise.6}}">Edit</a>
+                            <a class="boton2" href="/delete_record/{{exercise.6}}">Delete</a>
+                        </td>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+</html>

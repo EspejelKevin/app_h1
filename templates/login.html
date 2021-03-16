@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="shortcut icon" href="/static/images/adidas_ico.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish&display=swap" rel="stylesheet">
+    <title>Login</title>
+</head>
+<body>
+    <div class="login-box">
+        <img class="avatar" src="static/images/adidas_logo.png">
+        <h1>Login Here</h1>
+
+       <form action="/adidas" method="POST">
+          
+          <label for="username">Username</label> 
+          <input type="text" name="username" placeholder="Enter your username">
+
+          <label for="password">Password</label>
+          <input type="password" name="password" placeholder="Enter your password">
+
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          {% for message in messages %}
+            <p>{{message}}</p>
+          {% endfor %}
+          {% endif %}
+          {% endwith%}
+
+          <input type="submit" value="Log In">
+
+          <a href="">Forget your password?</a>
+          <a href="">Don´t have an account?</a>
+         
+       </form> 
+    </div>
+</body>
+</html>
